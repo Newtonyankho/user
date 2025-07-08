@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MCVS from NIT</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/mcvs.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+  <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+
+</head>
+<body>
+  <header>
+    <img src="{{ url_for('static', filename='img/mcvs.png') }}" alt="MCVS Logo">
+    <div class="logo">Mikolongwe</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search for services...">
+    </div>
+    <div class="header-icons">
+      <span>🔔</span>
+      <span>💬</span>
+      <span>👤</span>
+      <a href="/logout" style="margin-left: 10px;">🚪 Logout</a>
+    </div>
+  </header>
+
+ <nav class="main-nav">
+  <ul>
+    <li><a href="dashboard.html" data-icon="🏠" data-label="Home">🏠 <span>Home</span></a></li>
+    <li><a href="#" data-icon="📚" data-label="Lecture">📚 <span>Lecture</span></a></li>
+    <li><a href="#" data-icon="💬" data-label="Chat">💬 <span>Chat</span></a></li>
+    <li><a href="#" data-icon="📺" data-label="TV">📺 <span>TV</span></a></li>
+    <li><a href="#" data-icon="🧠" data-label="Avo">🧠 <span>Avo</span></a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <aside class="sidebar">
+    <ul>
+      <li><a href="#" data-icon="👤" data-label="Account">👤 <span>Account</span></a></li>
+      <li><a href="#" data-icon="🎮" data-label="Entertainment">🎮 <span>Entertainment</span></a></li>
+      <li><a href="#" data-icon="🔔" data-label="Notifications">🔔 <span>Notifications</span></a></li>
+      <li><a href="#" data-icon="⚙️" data-label="Settings">⚙️ <span>Settings</span></a></li>
+    </ul>
+  </aside>
+
+
+    <main class="content">
+      <h2>Welcome, {{ username }}</h2>
+
+      <!-- Post form -->
+      <div class="post-box">
+        <form action="/post" method="POST">
+          <textarea name="content" placeholder="Want to say something?" required></textarea>
+          <button type="submit">Post</button>
+        </form>
+      </div>
+
+      <!-- Feed -->
+      <div class="feed">
+        {% for post in posts %}
+        <div class="post">
+          <div class="post-header">
+            <div class="post-author">{{ post['username'] }}</div>
+            <div class="post-time">{{ post['timestamp'] }}</div>
+          </div>
+          <div class="post-content">
+            {{ post['content'] }}
+          </div>
+          <div class="post-actions">
+            <span>👍 Like</span>
+            <span>💬 Comment</span>
+            <span>↗ Share</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+
+    <aside class="right-sidebar">
+      <div class="right-sidebar-content">
+        <h3>Developed by Ndi Yankho</h3>
+        <div class="ad">NIT</div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Mikolongwe College</p>
+  </footer>
+</body>
+</html>
