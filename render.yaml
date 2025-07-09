@@ -1,7 +1,9 @@
 services:
   - type: web
-    name: mcvs-app
-    env: python
-    plan: free
-    buildCommand: ""
-    startCommand: python app.py
+    name: user-nit
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn app:app"
+    envVars:
+      - key: FLASK_ENV
+        value: production
